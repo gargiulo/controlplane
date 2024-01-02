@@ -1,0 +1,9 @@
+apiVersion: jb.com/v1
+kind: JBVM
+metadata:
+  name: srp12345lx
+spec:
+  purpose: Development
+  os: Linux
+  size: small
+  zone: ch.dc.prod

@@ -1,0 +1,67 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: jbvms.jb.com
+spec:
+  group: jb.com
+  scope: Namespaced
+  names:
+    plural: jbvms
+    singular: jbvm
+    kind: JBVM
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          required: ["spec"]
+          properties:
+            spec:
+              type: object
+              required:
+              - purpose
+              - os
+              - size
+              - zone
+              properties:
+                purpose:
+                  type: string
+                  enum:
+                    - Development
+                    - Test
+                    - UAT
+                    - Production
+                os:
+                  type: string
+                  enum:
+                    - Linux
+                    - Windows
+                size:
+                  type: string
+                  enum:
+                   - small
+                   - medium
+                   - large
+                zone:
+                  type: string
+                  enum:
+                    - ch.dc.devsit
+                    - ch.dc.prod
+                  allOf:
+                    - $ref: '#/definitions/UAT'
+                    - $ref: '#/definitions/Production'
+          definitions:
+            UAT:
+              properties:
+                purpose:
+                  const: UAT
+                zone:
+                  const: ch.dc.prod
+            Production:
+              properties:
+                purpose:
+                  const: Production
+                zone:
+                  const: ch.dc.prod
