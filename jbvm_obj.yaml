@@ -1,7 +1,7 @@
 apiVersion: jb.com/v1
 kind: JBVM
 metadata:
-  name: srp12345lx
+  name: my-linux-deploy1
 spec:
   purpose: Development
   os: Linux

@@ -49,3 +49,7 @@ spec:
                  enum:
                    - ch.dc.prod
                    - ch.dc.devsit
+                cmdbname:
+                 type: string
+                deploystatus:
+                 type: string
